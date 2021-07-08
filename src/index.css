@@ -82,10 +82,10 @@ input[type="time"] {
 }
 
 .btnadd {
-  background-color: #3a1e86 !important;
+  background-color: #7338b6 !important;
 }
 .btnadd:hover {
-  background-color: #6239d4 !important;
+  background-color: #42219c !important;
   transform: translateY(2px);
   transition: cubic-bezier(0.215, 0.61, 0.355, 1) 0.1s;
 }
