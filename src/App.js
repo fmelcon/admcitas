@@ -1,16 +1,34 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import Formulario from "./components/Formulario";
+import Cita from "./components/Cita";
 
 function App() {
+  // arreglo de citas
+  const [citas, setCitas] = useState([]);
+
+  // funcion que toma las citas actuales y agrega la nueva
+
+  const crearCita = (cita) => {
+    setCitas([...citas, cita]);
+  };
+  // Mensaje condicional
+  const titulo = citas.length === 0 ? "No hay citas" : "Administra tus Citas";
+
   return (
     <Fragment>
       <h1>Administrador de Pacientes</h1>
+
       <div className="container">
         <div className="row">
           <div className="one-half column">
-            <Formulario />
+            <Formulario crearCita={crearCita} />
           </div>
-          <div className="one-half column">2</div>
+          <div className="one-half column">
+            <h2>{titulo}</h2>
+            {citas.map((cita) => (
+              <Cita key={cita.id} cita={cita} />
+            ))}
+          </div>
         </div>
       </div>
     </Fragment>
