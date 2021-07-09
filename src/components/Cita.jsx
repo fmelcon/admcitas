@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import React from "react";
 
 const Cita = ({ cita, eliminarCita }) => {
@@ -26,6 +27,18 @@ const Cita = ({ cita, eliminarCita }) => {
       </button>
     </div>
   );
+};
+
+Cita.propTypes = {
+  cita: PropTypes.shape({
+    apellido: PropTypes.any,
+    fecha: PropTypes.any,
+    hora: PropTypes.any,
+    id: PropTypes.any,
+    nombre: PropTypes.any,
+    sintomas: PropTypes.any,
+  }),
+  eliminarCita: PropTypes.func.isRequired,
 };
 
 export default Cita;
