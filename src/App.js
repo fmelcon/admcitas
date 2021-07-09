@@ -14,12 +14,14 @@ function App() {
 
   // Use Effect para realizar operaciones cuando el State cambia
   useEffect(() => {
+    let citasIniciales = JSON.parse(localStorage.getItem("citas"));
+
     if (citasIniciales) {
       localStorage.setItem("citas", JSON.stringify(citas));
     } else {
       localStorage.setItem("citas", JSON.stringify([]));
     }
-  }, [citas, citasIniciales]);
+  }, [citas]);
 
   // funcion que toma las citas actuales y agrega la nueva
 
