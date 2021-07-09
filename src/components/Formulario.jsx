@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from "react";
+import uuid from "uuid/v4";
 
 const Formulario = () => {
   // Crear State de citas
@@ -10,6 +11,8 @@ const Formulario = () => {
     sintomas: "",
   });
 
+  const [error, setError] = useState(false);
+
   const handleChange = (e) => {
     setCita({
       ...cita,
@@ -20,10 +23,39 @@ const Formulario = () => {
   // Extraer los valores
   const { nombre, apellido, fecha, hora, sintomas } = cita;
 
+  // cuando el usuario presiona agregar cita
+  const submitCita = (e) => {
+    e.preventDefault();
+
+    // eliminar mensajes previos
+    setError(false);
+
+    // Validar
+    if (
+      nombre.trim() === "" ||
+      apellido.trim() === "" ||
+      fecha.trim() === "" ||
+      hora.trim() === "" ||
+      sintomas.trim() === ""
+    ) {
+      setError(true);
+      return;
+    }
+
+    // asignar un ID
+    cita.id = uuid();
+    // crear la cita
+
+    //reiniciar el form
+  };
+
   return (
     <Fragment>
       <h2>Crear Cita</h2>
-      <form>
+      {error ? (
+        <p className="alerta-error">Todos los campos son obligatorios</p>
+      ) : null}
+      <form onSubmit={submitCita}>
         <label>Nombre del Paciente</label>
         <input
           type="text"
